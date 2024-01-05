@@ -44,7 +44,7 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/moviedb');
+mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/bitfilmsdb');
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
