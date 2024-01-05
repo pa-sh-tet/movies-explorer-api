@@ -9,6 +9,8 @@ const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFound = require('./errors/NotFound');
 
+const { NODE_ENV, MONGO_DB } = process.env;
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { validateLogin, validatePostUser } = require('./middlewares/validation');
 
@@ -42,7 +44,7 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
-mongoose.connect('mongodb://127.0.0.1:27017/moviedb');
+mongoose.connect(NODE_ENV === 'production' ? MONGO_DB : 'mongodb://127.0.0.1:27017/moviedb');
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
